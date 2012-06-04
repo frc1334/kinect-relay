@@ -3,7 +3,7 @@
 
 struct VisionData
 {
-}
+};
 
 #if BEAGLEBOARD
 #include "../Beagleboard/KinectProc.h"
