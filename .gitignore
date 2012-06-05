@@ -13,3 +13,6 @@
 
 # emacs temp files
 *~
+
+# codeblocks files
+*.layout
