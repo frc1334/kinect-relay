@@ -13,13 +13,12 @@ VisionData Process(KinectObject *kinect)
 }
 #endif
 
-// TODO: Return type is incorrect.  Return type should be data ready for sockets
-void Encode(VisionData data)
+char* Encode(VisionData data)
 {
 }
 
-// TODO: This should have a parameter that matches the return type of Encode()
-VisionData Decode()
+
+VisionData Decode(char* data)
 {
 }
 

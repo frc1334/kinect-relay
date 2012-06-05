@@ -1,4 +1,7 @@
-#include "../Shared/MagicBox.h"
+#include "Server.h"
 
 int main()
-{ return 0; }
+{
+    runServer();
+    return 0;
+}
