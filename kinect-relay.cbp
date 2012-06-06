@@ -15,7 +15,8 @@
 					<Add option="-Wextra" />
 					<Add option="-Wall" />
 					<Add option="-g" />
-					<Add directory="/usr/include" />
+					<Add option="-DBEAGLEBOARD" />
+					<Add directory="/usr/local/include/libfreenect" />
 				</Compiler>
 				<ExtraCommands>
 					<Add before="/usr/local/angstrom/arm/environment-setup" />
@@ -41,6 +42,8 @@
 		</Compiler>
 		<Unit filename="Beagleboard/KinectProc.cpp" />
 		<Unit filename="Beagleboard/KinectProc.h" />
+		<Unit filename="Beagleboard/Server.cpp" />
+		<Unit filename="Beagleboard/Server.h" />
 		<Unit filename="Beagleboard/main.cpp" />
 		<Unit filename="Shared/MagicBox.h" />
 		<Unit filename="Shared/Mutex.h" />
