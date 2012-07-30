@@ -15,7 +15,7 @@ KinectServerConnection::KinectServerConnection(boost::asio::io_service& io_servi
 {
 }
 
-KinectServerConnection::pointer KinectServerConnection::Create(boost::asio::io_service& ioservice)
+KinectServerConnection::pointer KinectServerConnection::Create(boost::asio::io_service& io_service)
 {
 	return KinectServerConnection::pointer(new KinectServerConnection(io_service));
 }

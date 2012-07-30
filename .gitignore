@@ -20,3 +20,6 @@
 # eclipse
 .project
 .cproject
+
+# output
+kinect-relay
