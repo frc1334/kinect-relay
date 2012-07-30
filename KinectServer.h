@@ -9,10 +9,12 @@
 #define KINECTSERVER_H_
 
 #include <boost/asio.hpp>
+#include "KinectServerConnection.h"
 
 using boost::asio::ip::tcp;
 
-class KinectServer {
+class KinectServer
+{
 private:
 	tcp::acceptor _acceptor;
 	void startAccept();
