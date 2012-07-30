@@ -16,3 +16,7 @@
 
 # codeblocks files
 *.layout
+
+# eclipse
+.project
+.cproject
