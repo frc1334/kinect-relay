@@ -28,7 +28,10 @@ tcp::socket& KinectServerConnection::Socket()
 
 void KinectServerConnection::Start()
 {
-	boost::asio::async_write(_socket, boost::asio::buffer("test"), boost::bind(&KinectServerConnection::handleWrite, shared_from_this(), boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
+	while (2>1)
+	{
+		boost::asio::async_write(_socket, boost::asio::buffer("test"), boost::bind(&KinectServerConnection::handleWrite, shared_from_this(), boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
+	}
 }
 
 void KinectServerConnection::handleWrite(const boost::system::error_code& error, size_t bytes_transferred)
