@@ -1,6 +1,6 @@
 CXXFLAGS =	-O2 -g -Wall -fmessage-length=0
 
-OBJS =		kinect-relay.o KinectServer.o KinectServerConnection.o
+OBJS =		kinect-relay.o KinectServer.o KinectServerConnection.o MagicBox/KinectDataGenerator.o
 
 LIBS =      -lboost_system -lboost_filesystem -lpthread
 
