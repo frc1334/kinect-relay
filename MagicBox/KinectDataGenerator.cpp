@@ -5,7 +5,7 @@
  *      Author: joseph
  */
 
-#include "ProcessedKinectData.h"
+#include "KinectDataGenerator.h"
 
 // This method will be used to process vision data
 ProcessedKinectData GenerateKinectData()
