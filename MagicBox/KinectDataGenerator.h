@@ -16,7 +16,7 @@ struct ProcessedKinectData
 };
 
 #ifdef SERVER
-ProcessedKinectData GenerateKinectData();
+ProcessedKinectData GenerateKinectData(KinectFrameManager* kinect);
 #endif
 
 #endif /* KINECTDATAGENERATOR_H_ */

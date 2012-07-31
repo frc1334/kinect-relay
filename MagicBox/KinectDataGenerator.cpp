@@ -9,7 +9,8 @@
 
 #ifdef SERVER
 // This method will be used to process vision data
-ProcessedKinectData GenerateKinectData()
+// This will be called by KinectFrameManager
+ProcessedKinectData GenerateKinectData(KinectFrameManager* kinect)
 {
 	ProcessedKinectData data;
 	data.uselessData = 42;
