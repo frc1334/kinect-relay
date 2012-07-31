@@ -15,6 +15,8 @@ struct ProcessedKinectData
 	int uselessData;
 };
 
+#ifdef SERVER
 ProcessedKinectData GenerateKinectData();
+#endif
 
 #endif /* KINECTDATAGENERATOR_H_ */

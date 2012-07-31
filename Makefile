@@ -1,4 +1,4 @@
-CXXFLAGS =	-O2 -g -Wall -fmessage-length=0
+CXXFLAGS =	-O2 -g -Wall -fmessage-length=0 -D SERVER
 
 OBJS =		kinect-relay.o KinectServer.o KinectServerConnection.o KinectFrameManager.o Mutex.o MagicBox/KinectDataGenerator.o
 
