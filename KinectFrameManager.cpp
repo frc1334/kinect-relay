@@ -6,9 +6,3 @@
  */
 
 #include "KinectFrameManager.h"
-
-KinectFrameManager::KinectFrameManager() {
-	// TODO Auto-generated constructor stub
-
-}
-
