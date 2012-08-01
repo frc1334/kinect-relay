@@ -23,7 +23,8 @@ int main(int argc, char *argv[])
 {
 	try
 	{
-		KinectFrameManager kinect;
+		Freenect::Freenect freenect;
+		KinectFrameManager* device = &freenect.createDevice<KinectFrameManager>(0);
 		boost::program_options::options_description generic("Generic Options");
 		generic.add_options()
 				("version,v", "print version information")
@@ -53,7 +54,7 @@ int main(int argc, char *argv[])
 			return 0;
 		}
 		boost::asio::io_service io_service;
-		KinectServer server(io_service, config_data.port, &kinect);
+		KinectServer server(io_service, config_data.port, device);
 		io_service.run();
 	}
 	catch (std::exception& e)

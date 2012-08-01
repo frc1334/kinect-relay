@@ -8,6 +8,7 @@
 #include "KinectFrameManager.h"
 
 KinectFrameManager::KinectFrameManager(freenect_context *ctx, int index)
+	: Freenect::FreenectDevice(ctx, index)
 {
 }
 
