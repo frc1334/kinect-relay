@@ -9,7 +9,7 @@ TARGET =	kinect-relay
 $(TARGET):	$(OBJS)
 	$(CXX) -o $(TARGET) $(OBJS) $(LIBS)
 
-all:	$(TARGET)
+all: $(OBJDIR) $(TARGET)
 
 clean:
 	rm -f $(OBJS) $(TARGET)
