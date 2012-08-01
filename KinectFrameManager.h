@@ -9,7 +9,7 @@
 #define KINECTFRAMEMANAGER_H_
 
 #include <vector>
-#include "/usr/include/libfreenect/libfreenect.hpp" // Fix this later
+#include "libfreenect/libfreenect.hpp"
 
 class KinectFrameManager
 	: public Freenect::FreenectDevice
