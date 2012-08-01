@@ -8,6 +8,8 @@
 #ifndef KINECTFRAMEMANAGER_H_
 #define KINECTFRAMEMANAGER_H_
 
+class KinectServerConnection;
+
 #include <vector>
 #include "libfreenect/libfreenect.hpp"
 
@@ -22,7 +24,7 @@ public:
 	void getDepth(std::vector<uint8_t> &buffer);
 	bool isNewRGB();
 	bool isNewDepth();
-	void DoLoop();
+	void DoLoop(KinectServerConnection* connection);
 };
 
 #endif /* KINECTFRAMEMANAGER_H_ */

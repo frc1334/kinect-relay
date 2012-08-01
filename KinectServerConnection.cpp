@@ -26,14 +26,14 @@ tcp::socket& KinectServerConnection::Socket()
 	return _socket;
 }
 
-void x(KinectFrameManager* kinect)
+void x(KinectFrameManager* kinect, KinectServerConnection* connection)
 {
-	kinect->DoLoop();
+	kinect->DoLoop(connection);
 }
 
 void KinectServerConnection::Start()
 {
-	boost::thread(boost::ref(x), kinect);
+	boost::thread(boost::ref(x), kinect, this);
 }
 
 void KinectServerConnection::Write(std::string data)

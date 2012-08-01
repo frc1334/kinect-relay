@@ -6,6 +6,7 @@
  */
 
 #include "KinectFrameManager.h"
+#include "KinectServerConnection.h"
 
 KinectFrameManager::KinectFrameManager(freenect_context *ctx, int index)
 	: Freenect::FreenectDevice(ctx, index)
@@ -38,6 +39,7 @@ bool KinectFrameManager::isNewDepth()
 	return false;
 }
 
-void KinectFrameManager::DoLoop()
+void KinectFrameManager::DoLoop(KinectServerConnection* connection)
 {
+	connection->Write("bluh\n");
 }
