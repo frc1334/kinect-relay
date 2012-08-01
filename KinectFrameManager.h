@@ -22,6 +22,7 @@ public:
 	void getDepth(std::vector<uint8_t> &buffer);
 	bool isNewRGB();
 	bool isNewDepth();
+	void DoLoop();
 };
 
 #endif /* KINECTFRAMEMANAGER_H_ */

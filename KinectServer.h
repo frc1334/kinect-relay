@@ -10,6 +10,7 @@
 
 #include <boost/asio.hpp>
 #include "KinectServerConnection.h"
+#include "KinectFrameManager.h"
 
 using boost::asio::ip::tcp;
 
@@ -17,11 +18,12 @@ class KinectServer
 {
 private:
 	tcp::acceptor _acceptor;
+	KinectFrameManager* kinect;
 	void startAccept();
 	void handleAccept(KinectServerConnection::pointer new_connection, const boost::system::error_code& error);
 public:
 	virtual ~KinectServer();
-	KinectServer(boost::asio::io_service& io_service, int portno);
+	KinectServer(boost::asio::io_service& io_service, int portno, KinectFrameManager* kinect);
 };
 
 #endif /* KINECTSERVER_H_ */

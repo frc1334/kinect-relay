@@ -23,6 +23,7 @@ int main(int argc, char *argv[])
 {
 	try
 	{
+		KinectFrameManager kinect;
 		boost::program_options::options_description generic("Generic Options");
 		generic.add_options()
 				("version,v", "print version information")
@@ -52,7 +53,7 @@ int main(int argc, char *argv[])
 			return 0;
 		}
 		boost::asio::io_service io_service;
-		KinectServer server(io_service, config_data.port);
+		KinectServer server(io_service, config_data.port, &kinect);
 		io_service.run();
 	}
 	catch (std::exception& e)
