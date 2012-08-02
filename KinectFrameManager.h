@@ -11,6 +11,7 @@
 class KinectServerConnection;
 
 #include <vector>
+#include "Mutex.h"
 #include "libfreenect/libfreenect.hpp"
 
 class KinectFrameManager
@@ -22,9 +23,13 @@ public:
 	void DepthCallback(void* _depth, uint32_t timestamp);
 	void getRGB(std::vector<uint8_t> &buffer);
 	void getDepth(std::vector<uint8_t> &buffer);
-	bool isNewRGB();
-	bool isNewDepth();
 	void DoLoop(KinectServerConnection* connection);
+private:
+	std::vector<uint8_t> bufferDepth;
+	std::vector<uint8_t> bufferVideo;
+	std::vector<uint16_t> gamma;
+	Mutex mutexBufferDepth;
+	Mutex mutexBufferVideo;
 };
 
 #endif /* KINECTFRAMEMANAGER_H_ */

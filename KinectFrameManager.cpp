@@ -9,8 +9,14 @@
 #include "KinectServerConnection.h"
 
 KinectFrameManager::KinectFrameManager(freenect_context *ctx, int index)
-	: Freenect::FreenectDevice(ctx, index)
+	: Freenect::FreenectDevice(ctx, index), bufferDepth(freenect_find_video_mode(FREENECT_RESOLUTION_MEDIUM, FREENECT_VIDEO_RGB).bytes), bufferVideo(freenect_find_video_mode(FREENECT_RESOLUTION_MEDIUM, FREENECT_VIDEO_RGB).bytes), gamma(2048)
 {
+	for (unsigned int i = 0; i < 2048; i++)
+	{
+		float v = i / 2048.0f;
+		v = std::pow(v, 3) * 6;
+		gamma[i] = v * 6 * 256;
+	}
 }
 
 void KinectFrameManager::VideoCallback(void* _rgb, uint32_t timestamp)
@@ -27,16 +33,6 @@ void KinectFrameManager::getRGB(std::vector<uint8_t> &buffer)
 
 void KinectFrameManager::getDepth(std::vector<uint8_t> &buffer)
 {
-}
-
-bool KinectFrameManager::isNewRGB()
-{
-	return false;
-}
-
-bool KinectFrameManager::isNewDepth()
-{
-	return false;
 }
 
 void KinectFrameManager::DoLoop(KinectServerConnection* connection)
