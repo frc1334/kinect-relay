@@ -21,8 +21,6 @@ public:
 	KinectFrameManager(freenect_context *ctx, int index);
 	void VideoCallback(void* _rgb, uint32_t timestamp);
 	void DepthCallback(void* _depth, uint32_t timestamp);
-	void getRGB(std::vector<uint8_t> &buffer);
-	void getDepth(std::vector<uint8_t> &buffer);
 	void DoLoop(KinectServerConnection* connection);
 private:
 	std::vector<uint8_t> bufferDepth;

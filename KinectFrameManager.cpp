@@ -24,14 +24,9 @@ void KinectFrameManager::VideoCallback(void* _rgb, uint32_t timestamp)
 void KinectFrameManager::DepthCallback(void* _depth, uint32_t timestamp)
 {
 	Mutex::ScopeMutex lock(mutexBufferDepth); // Same as above
-}
-
-void KinectFrameManager::getRGB(std::vector<uint8_t> &buffer)
-{
-}
-
-void KinectFrameManager::getDepth(std::vector<uint8_t> &buffer)
-{
+	uint16_t* depth = static_cast<uint16_t*>(_depth);
+	std::copy(depth, depth + getDepthBufferSize(), bufferDepth.begin());
+	newDepth = true;
 }
 
 void KinectFrameManager::DoLoop(KinectServerConnection* connection)
