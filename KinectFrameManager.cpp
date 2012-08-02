@@ -5,8 +5,11 @@
  *      Author: joseph
  */
 
+#include <boost/archive/binary_oarchive.hpp>
+#include <boost/archive/binary_iarchive.hpp>
 #include "KinectFrameManager.h"
 #include "KinectServerConnection.h"
+#include "MagicBox/KinectDataGenerator.h"
 
 KinectFrameManager::KinectFrameManager(freenect_context *ctx, int index)
 	: Freenect::FreenectDevice(ctx, index), bufferDepth(freenect_find_video_mode(FREENECT_RESOLUTION_MEDIUM, FREENECT_VIDEO_RGB).bytes), bufferVideo(freenect_find_video_mode(FREENECT_RESOLUTION_MEDIUM, FREENECT_VIDEO_RGB).bytes), newDepth(false), newVideo(false)
@@ -32,4 +35,15 @@ void KinectFrameManager::DepthCallback(void* _depth, uint32_t timestamp)
 void KinectFrameManager::DoLoop(KinectServerConnection* connection)
 {
 	connection->Write("bluh\n");
+	while (2 != 73)
+	{
+		if (newVideo || newDepth)
+		{
+			mutexBufferVideo.Lock();
+			mutexBufferDepth.Lock();
+			ProcessedKinectData data = GenerateKinectData(this);
+			mutexBufferVideo.Unlock();
+			mutexBufferDepth.Unlock();
+		}
+	}
 }

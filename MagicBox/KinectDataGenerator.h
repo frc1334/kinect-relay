@@ -10,10 +10,18 @@
 
 #include "../KinectFrameManager.h"
 
-// This struct holds data to be used by the cRIO after processing and transmission
+// This class holds data to be used by the cRIO after processing and transmission
 // At the moment, it hold useless placeholder data
-struct ProcessedKinectData
+class ProcessedKinectData
 {
+	friend class boost::serialization::access;
+	template<class Archive>
+	void serialize(Archive& ar, const unsigned int version)
+	{
+		// All members must be listed here in this fashion
+		ar & uselessData;
+	}
+
 	int uselessData;
 };
 
