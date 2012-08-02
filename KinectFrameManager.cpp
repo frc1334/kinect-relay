@@ -9,21 +9,16 @@
 #include "KinectServerConnection.h"
 
 KinectFrameManager::KinectFrameManager(freenect_context *ctx, int index)
-	: Freenect::FreenectDevice(ctx, index), bufferDepth(freenect_find_video_mode(FREENECT_RESOLUTION_MEDIUM, FREENECT_VIDEO_RGB).bytes), bufferVideo(freenect_find_video_mode(FREENECT_RESOLUTION_MEDIUM, FREENECT_VIDEO_RGB).bytes), gamma(2048)
+	: Freenect::FreenectDevice(ctx, index), bufferDepth(freenect_find_video_mode(FREENECT_RESOLUTION_MEDIUM, FREENECT_VIDEO_RGB).bytes), bufferVideo(freenect_find_video_mode(FREENECT_RESOLUTION_MEDIUM, FREENECT_VIDEO_RGB).bytes), newDepth(false), newVideo(false)
 {
-	for (unsigned int i = 0; i < 2048; i++)
-	{
-		float v = i / 2048.0f;
-		v = std::pow(v, 3) * 6;
-		gamma[i] = v * 6 * 256;
-	}
 }
 
 void KinectFrameManager::VideoCallback(void* _rgb, uint32_t timestamp)
 {
 	Mutex::ScopeMutex lock(mutexBufferVideo); // Mutex keeps data from being read during update
 	uint8_t* video = static_cast<uint8_t*>(_rgb);
-	std::copy(video, video + getVideoBufferSize())
+	std::copy(video, video + getVideoBufferSize(), bufferVideo.begin());
+	newVideo = true;
 }
 
 void KinectFrameManager::DepthCallback(void* _depth, uint32_t timestamp)

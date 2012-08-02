@@ -26,10 +26,11 @@ public:
 	void DoLoop(KinectServerConnection* connection);
 private:
 	std::vector<uint8_t> bufferDepth;
-	std::vector<uint8_t> bufferVideo;
-	std::vector<uint16_t> gamma;
+	std::vector<uint16_t> bufferVideo;
 	Mutex mutexBufferDepth;
 	Mutex mutexBufferVideo;
+	bool newDepth;
+	bool newVideo;
 };
 
 #endif /* KINECTFRAMEMANAGER_H_ */
