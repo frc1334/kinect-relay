@@ -21,10 +21,14 @@ KinectFrameManager::KinectFrameManager(freenect_context *ctx, int index)
 
 void KinectFrameManager::VideoCallback(void* _rgb, uint32_t timestamp)
 {
+	Mutex::ScopeMutex lock(mutexBufferVideo); // Mutex keeps data from being read during update
+	uint8_t* video = static_cast<uint8_t*>(_rgb);
+	std::copy(video, video + getVideoBufferSize())
 }
 
 void KinectFrameManager::DepthCallback(void* _depth, uint32_t timestamp)
 {
+	Mutex::ScopeMutex lock(mutexBufferDepth); // Same as above
 }
 
 void KinectFrameManager::getRGB(std::vector<uint8_t> &buffer)
