@@ -23,7 +23,7 @@ public:
 	static pointer Create(boost::asio::io_service& io_service, KinectFrameManager* kinect);
 	tcp::socket& Socket();
 	void Start();
-	void Write(std::string data);
+	void Write(boost::asio::streambuf* data);
 private:
 	KinectServerConnection(boost::asio::io_service& io_service, KinectFrameManager* kinect);
 	void handleWrite(const boost::system::error_code& error, size_t bytes_transferred);

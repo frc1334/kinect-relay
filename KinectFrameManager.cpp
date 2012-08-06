@@ -6,7 +6,6 @@
  */
 
 #include <boost/archive/binary_oarchive.hpp>
-#include <boost/archive/binary_iarchive.hpp>
 #include "KinectFrameManager.h"
 #include "KinectServerConnection.h"
 #include "MagicBox/KinectDataGenerator.h"
@@ -34,16 +33,20 @@ void KinectFrameManager::DepthCallback(void* _depth, uint32_t timestamp)
 
 void KinectFrameManager::DoLoop(KinectServerConnection* connection)
 {
-	connection->Write("bluh\n");
 	while (2 != 73)
 	{
 		if (newVideo || newDepth)
 		{
 			mutexBufferVideo.Lock();
 			mutexBufferDepth.Lock();
-			ProcessedKinectData data = GenerateKinectData(this);
+			ProcessedKinectData data = GenerateKinectData(this, newVideo, newDepth);
 			mutexBufferVideo.Unlock();
 			mutexBufferDepth.Unlock();
+			boost::asio::streambuf requestData;
+			std::ostream dataStream(&requestData);
+			boost::archive::binary_oarchive serializer(dataStream);
+			serializer << data;
+			connection->Write(&requestData);
 		}
 	}
 }

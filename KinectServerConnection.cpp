@@ -36,11 +36,12 @@ void KinectServerConnection::Start()
 	boost::thread(boost::ref(x), kinect, this);
 }
 
-void KinectServerConnection::Write(std::string data)
+void KinectServerConnection::Write(boost::asio::streambuf* data)
 {
-	boost::asio::async_write(_socket, boost::asio::buffer(data), boost::bind(&KinectServerConnection::handleWrite, shared_from_this(), boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
+	boost::asio::async_write(_socket, *data, boost::bind(&KinectServerConnection::handleWrite, shared_from_this(), boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
 }
 
 void KinectServerConnection::handleWrite(const boost::system::error_code& error, size_t bytes_transferred)
 {
+	// i think something should be done here......
 }
