@@ -5,6 +5,7 @@
  *      Author: joseph
  */
 
+#include "../../config.h"
 #include <boost/archive/binary_oarchive.hpp>
 #include "KinectFrameManager.h"
 #include "KinectServerConnection.h"

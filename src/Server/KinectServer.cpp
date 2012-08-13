@@ -5,6 +5,7 @@
  *      Author: joseph
  */
 
+#include "../../config.h"
 #include "KinectServer.h"
 #include "KinectServerConnection.h"
 #include <boost/asio.hpp>
