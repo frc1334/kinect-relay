@@ -26,9 +26,18 @@
 kinectd
 
 #autoconf stuff
-src/Shared/.deps
-src/Shared/.dirstamp
-src/Server/.deps
-src/Server/.dirstamp
-src/MagicBox/.deps
-src/MagicBox/.dirstamp
+.deps
+.dirstamp
+Makefile
+Makefile.in
+README
+aclocal.m4
+autom4te.cache
+config.h
+config.h.in
+config.status
+configure
+depcomp
+install-sh
+missing
+stamp-h1
