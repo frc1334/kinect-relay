@@ -9,7 +9,7 @@
 #define KINECTDATAGENERATOR_H_
 
 #include <boost/archive/binary_oarchive.hpp>
-#include "../KinectFrameManager.h"
+#include "../Server/KinectFrameManager.h"
 
 // This class holds data to be used by the cRIO after processing and transmission
 // At the moment, it hold useless placeholder data

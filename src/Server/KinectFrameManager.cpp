@@ -8,7 +8,7 @@
 #include <boost/archive/binary_oarchive.hpp>
 #include "KinectFrameManager.h"
 #include "KinectServerConnection.h"
-#include "MagicBox/KinectDataGenerator.h"
+#include "../MagicBox/KinectDataGenerator.h"
 
 KinectFrameManager::KinectFrameManager(freenect_context *ctx, int index)
 	: Freenect::FreenectDevice(ctx, index), bufferDepth(freenect_find_video_mode(FREENECT_RESOLUTION_MEDIUM, FREENECT_VIDEO_RGB).bytes), bufferVideo(freenect_find_video_mode(FREENECT_RESOLUTION_MEDIUM, FREENECT_VIDEO_RGB).bytes), newDepth(false), newVideo(false)
