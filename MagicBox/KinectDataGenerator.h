@@ -32,7 +32,14 @@ public:
 };
 
 #ifdef SERVER
-ProcessedKinectData GenerateKinectData(KinectFrameManager* kinect, bool newVideo, bool newDepth);
+// This method will be used to process vision data
+// This will be called by KinectFrameManager
+ProcessedKinectData GenerateKinectData(KinectFrameManager* kinect, bool newVideo, bool newDepth)
+{
+	ProcessedKinectData data;
+	data.uselessData = 42;
+	return data;
+}
 #endif
 
 #endif /* KINECTDATAGENERATOR_H_ */
