@@ -23,4 +23,12 @@
 .settings
 
 # output
-kinect-relay
+kinectd
+
+#autoconf stuff
+src/Shared/.deps
+src/Shared/.dirstamp
+src/Server/.deps
+src/Server/.dirstamp
+src/MagicBox/.deps
+src/MagicBox/.dirstamp
