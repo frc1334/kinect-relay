@@ -1,6 +1,6 @@
 //This is stuffs.
 
-#include <../../MagicBox/KinectDataGenerator.h>
+#include "../MagicBox/KinectDataGenerator.h"
 #include <WPILib.h>
 #include <boost/asio.hpp>
 
