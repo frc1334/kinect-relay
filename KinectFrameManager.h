@@ -11,7 +11,7 @@
 class KinectServerConnection;
 
 #include <vector>
-#include "Mutex.h"
+#include "Shared/Mutex.h"
 #include "libfreenect/libfreenect.hpp"
 
 class KinectFrameManager
