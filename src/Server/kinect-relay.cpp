@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
 	    	syslog(LOG_ERR | LOG_USER, "Unable to open /dev/null: %m");
 	    	return EXIT_FAILURE;
 	    }
-        const char* output = "/tmp/asio.daemon.out";
+        const char* output = "/tmp/kinectd.daemon.out";
         const int flags = O_WRONLY | O_CREAT | O_APPEND;
         const mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH;
         if (open(output, flags, mode) < 0)
@@ -91,7 +91,11 @@ int main(int argc, char *argv[])
         }
         io_service.notify_fork(boost::asio::io_service::fork_child);
         syslog(LOG_INFO | LOG_USER, "kinectd daemon started");
+    	device->startVideo();
+    	device->startDepth();
 		io_service.run();
+		device->stopVideo();
+		device->stopDepth();
 		syslog(LOG_INFO | LOG_USER, "kinectd daemon stopped");
 	}
 	catch (std::exception& e)
