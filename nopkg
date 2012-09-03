@@ -1,0 +1,10 @@
+.deps
+.dirstamp
+.settings
+*.o
+*~
+pkg
+README.md
+autogen.sh
+nopkg
+package.sh

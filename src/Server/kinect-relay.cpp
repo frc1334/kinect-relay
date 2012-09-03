@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <syslog.h>
 #include <boost/asio.hpp>
+#include <boost/bind.hpp>
 #include <boost/program_options.hpp>
 #include "KinectServer.h"
 
@@ -57,7 +58,7 @@ int main(int argc, char *argv[])
 			return EXIT_SUCCESS;
 		}
 		KinectServer server(io_service, config_data.port, device);
-		boost::asio::signal_set signals(io_service, SIGINT, SIGTERM);
+		/*boost::asio::signal_set signals(io_service, SIGINT, SIGTERM);
 	    signals.async_wait(boost::bind(&boost::asio::io_service::stop, &io_service));
 	    io_service.notify_fork(boost::asio::io_service::fork_prepare);
 	    if (pid_t pid = fork())
@@ -90,7 +91,7 @@ int main(int argc, char *argv[])
            return EXIT_FAILURE;
         }
         io_service.notify_fork(boost::asio::io_service::fork_child);
-        syslog(LOG_INFO | LOG_USER, "kinectd daemon started");
+        syslog(LOG_INFO | LOG_USER, "kinectd daemon started");*/
     	device->startVideo();
     	device->startDepth();
 		io_service.run();
