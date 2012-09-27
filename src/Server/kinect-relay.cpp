@@ -7,6 +7,7 @@
 //============================================================================
 
 #include "../../config.h"
+#include <iostream>
 #include <fstream>
 #include <stdio.h>
 #include <stdlib.h>
@@ -97,7 +98,7 @@ int main(int argc, char *argv[])
 		io_service.run();
 		device->stopVideo();
 		device->stopDepth();
-		syslog(LOG_INFO | LOG_USER, "kinectd daemon stopped");
+		//syslog(LOG_INFO | LOG_USER, "kinectd daemon stopped");
 	}
 	catch (std::exception& e)
 	{
