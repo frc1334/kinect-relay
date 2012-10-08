@@ -42,7 +42,8 @@ void KinectServerConnection::Start()
 void KinectServerConnection::Write(boost::asio::streambuf* data)
 {
 	std::cout << &_socket << std::endl;
-	boost::asio::async_write(_socket, *data, boost::bind(&KinectServerConnection::handleWrite, shared_from_this(), boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
+	boost::asio::write(_socket, *data, boost::asio::transfer_all());
+	//boost::asio::async_write(_socket, *data, boost::bind(&KinectServerConnection::handleWrite, shared_from_this(), boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
 }
 
 void KinectServerConnection::handleWrite(const boost::system::error_code& error, size_t bytes_transferred)
