@@ -27,7 +27,7 @@ void KinectServer::startAccept()
 {
     KinectServerConnection::pointer new_connection = KinectServerConnection::Create(_acceptor.get_io_service(), kinect);
 
-  	_acceptor.async_accept(new_connection->Socket(), boost::bind(&KinectServer::handleAccept, this, boost::ref(new_connection), boost::asio::placeholders::error));
+  	_acceptor.async_accept(new_connection->Socket(), boost::bind(&KinectServer::handleAccept, this, new_connection, boost::asio::placeholders::error));
 }
 
 void KinectServer::handleAccept(KinectServerConnection::pointer new_connection, const boost::system::error_code& error)
