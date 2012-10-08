@@ -48,7 +48,7 @@ void KinectFrameManager::DoLoop(KinectServerConnection* connection)
 			std::ostream dataStream(&requestData);
 			boost::archive::binary_oarchive serializer(dataStream);
 			serializer << data;
-			connection->Write(&requestData);
+			//connection->Write(&requestData);
 		}
 	}
 }
