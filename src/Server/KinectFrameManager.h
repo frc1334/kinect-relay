@@ -12,7 +12,7 @@ class KinectServerConnection;
 
 #include <vector>
 #include "../Shared/Mutex.h"
-#include "../libfreenect/libfreenect.hpp"
+#include "libfreenect.hpp"
 
 class KinectFrameManager
 	: public Freenect::FreenectDevice
