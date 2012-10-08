@@ -11,6 +11,7 @@
 #include <boost/thread.hpp>
 #include "KinectServerConnection.h"
 #include "KinectFrameManager.h"
+#include <iostream>
 
 using boost::asio::ip::tcp;
 
@@ -39,10 +40,12 @@ void KinectServerConnection::Start()
 
 void KinectServerConnection::Write(boost::asio::streambuf* data)
 {
+	std::cout << &_socket << std::endl;
 	boost::asio::async_write(_socket, *data, boost::bind(&KinectServerConnection::handleWrite, shared_from_this(), boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
 }
 
 void KinectServerConnection::handleWrite(const boost::system::error_code& error, size_t bytes_transferred)
 {
 	// i think something should be done here......
+	// logging, likely
 }

@@ -93,11 +93,15 @@ int main(int argc, char *argv[])
         }
         io_service.notify_fork(boost::asio::io_service::fork_child);
         syslog(LOG_INFO | LOG_USER, "kinectd daemon started");*/
+		std::cout << "Starting kinect...." << std::endl;
     	device->startVideo();
     	device->startDepth();
+    	std::cout << "Starting server...." << std::endl;
 		io_service.run();
+    	/*std::cout << "Stopping server...." << std::endl;
 		device->stopVideo();
 		device->stopDepth();
+		std::cout << "Stopping kinect...." << std::endl;*/
 		//syslog(LOG_INFO | LOG_USER, "kinectd daemon stopped");
 	}
 	catch (std::exception& e)
