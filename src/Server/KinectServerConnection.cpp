@@ -36,6 +36,7 @@ void x(KinectFrameManager* kinect, KinectServerConnection* connection)
 void KinectServerConnection::Start()
 {
 	std::cout << "Starting thread" << std::endl;
+	_socket.open(boost::asio::ip::tcp::v4());
 	boost::thread(boost::ref(x), kinect, this);
 }
 
