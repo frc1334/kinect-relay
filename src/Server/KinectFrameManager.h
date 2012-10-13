@@ -10,7 +10,7 @@
 
 class KinectServerConnection;
 
-#include <vector>
+#include <opencv/cv.h>
 #include "../Shared/Mutex.h"
 #include "libfreenect.hpp"
 
@@ -23,8 +23,8 @@ public:
 	void DepthCallback(void* _depth, uint32_t timestamp);
 	void DoLoop(KinectServerConnection* connection);
 private:
-	std::vector<uint8_t> bufferDepth;
-	std::vector<uint16_t> bufferVideo;
+	cv::Mat bufferDepth;
+	cv::Mat bufferVideo;
 	Mutex mutexBufferDepth;
 	Mutex mutexBufferVideo;
 	bool newDepth;
