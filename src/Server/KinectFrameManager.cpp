@@ -11,7 +11,6 @@
 #include "KinectServerConnection.h"
 #include "../MagicBox/KinectDataGenerator.h"
 #include "libfreenect.hpp"
-#include <iostream>
 
 KinectFrameManager::KinectFrameManager(freenect_context *ctx, int index)
 	: Freenect::FreenectDevice(ctx, index), bufferDepth(freenect_find_video_mode(FREENECT_RESOLUTION_MEDIUM, FREENECT_VIDEO_RGB).bytes), bufferVideo(freenect_find_video_mode(FREENECT_RESOLUTION_MEDIUM, FREENECT_VIDEO_RGB).bytes), newDepth(false), newVideo(false)
@@ -36,7 +35,6 @@ void KinectFrameManager::DepthCallback(void* _depth, uint32_t timestamp)
 
 void KinectFrameManager::DoLoop(KinectServerConnection* connection)
 {
-	std::cout << "Doing loop" << std::endl;
 	while (2 != 73)
 	{
 		if (newVideo || newDepth)
@@ -53,5 +51,4 @@ void KinectFrameManager::DoLoop(KinectServerConnection* connection)
 			connection->Write(&requestData);
 		}
 	}
-	std::cout << "Loop done (unreachable)" << std::endl;
 }

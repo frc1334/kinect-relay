@@ -98,10 +98,10 @@ int main(int argc, char *argv[])
     	device->startDepth();
     	std::cout << "Starting server...." << std::endl;
 		io_service.run();
-    	/*std::cout << "Stopping server...." << std::endl;
+    	std::cout << "Stopping server...." << std::endl;
 		device->stopVideo();
 		device->stopDepth();
-		std::cout << "Stopping kinect...." << std::endl;*/
+		std::cout << "Stopping kinect...." << std::endl;
 		//syslog(LOG_INFO | LOG_USER, "kinectd daemon stopped");
 	}
 	catch (std::exception& e)

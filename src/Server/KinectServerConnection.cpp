@@ -35,17 +35,13 @@ void x(KinectFrameManager* kinect, KinectServerConnection* connection)
 
 void KinectServerConnection::Start()
 {
-	std::cout << "Opening socket" << std::endl;
 	_socket.open(boost::asio::ip::tcp::v4());
-	std::cout << "Starting thread" << std::endl;
 	boost::thread(boost::ref(x), kinect, this);
 }
 
 void KinectServerConnection::Write(boost::asio::streambuf* data)
 {
-	std::cout << &_socket << std::endl;
 	boost::asio::write(_socket, *data, boost::asio::transfer_all());
-	//boost::asio::async_write(_socket, *data, boost::bind(&KinectServerConnection::handleWrite, shared_from_this(), boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
 }
 
 void KinectServerConnection::handleWrite(const boost::system::error_code& error, size_t bytes_transferred)
