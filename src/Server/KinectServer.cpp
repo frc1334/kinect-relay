@@ -10,6 +10,7 @@
 #include "KinectServerConnection.h"
 #include <boost/asio.hpp>
 #include <boost/bind.hpp>
+#include <iostream>
 
 KinectServer::~KinectServer()
 {
@@ -33,7 +34,9 @@ void KinectServer::handleAccept(KinectServerConnection::pointer new_connection, 
 {
     if (!error)
 	{
+    	std::cout << "Connection Accepted" << std::endl;
     	new_connection->Start();
+    	std::cout << "Accepting new connections" << std::endl;
 	    startAccept();
 	}
 }

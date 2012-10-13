@@ -26,7 +26,7 @@ Then run:
         $ . /usr/local/angstrom/arm/environment-setup
         $ export CROSS_OUTPUT="path to output directory"
         $ opkg-target update
-        $ opkg-target install libfreenect libfreenect-dev boost boost-serialization boost-program-options
+        $ opkg-target install libfreenect libfreenect-dev boost boost-serialization boost-program-options opencv-dev
         $ ./configure --host=arm-angstrom-linux-gnueabi --prefix=$CROSS_OUTPUT
         $ make
         $ make install
