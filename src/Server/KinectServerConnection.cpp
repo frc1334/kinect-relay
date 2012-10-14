@@ -11,7 +11,6 @@
 #include <boost/thread.hpp>
 #include "KinectServerConnection.h"
 #include "KinectFrameManager.h"
-#include <iostream>
 
 using boost::asio::ip::tcp;
 
@@ -35,8 +34,7 @@ void x(KinectFrameManager* kinect, KinectServerConnection* connection)
 
 void KinectServerConnection::Start()
 {
-	_socket.open(boost::asio::ip::tcp::v4());
-	boost::thread(boost::ref(x), kinect, this);
+	kinect->DoLoop(this);
 }
 
 void KinectServerConnection::Write(boost::asio::streambuf* data)
