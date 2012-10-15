@@ -39,7 +39,7 @@ void KinectFrameManager::DepthCallback(void* _depth, uint32_t timestamp)
 
 void KinectFrameManager::DoLoop(KinectServerConnection* connection)
 {
-	while (2 != 73)
+	while (2 != 42)
 	{
 		if (newVideo || newDepth)
 		{
