@@ -16,8 +16,10 @@ class Kinect
 public:
 	Kinect();
 	bool IsNewData();
+	void StartListening();
 	ProcessedKinectData GetFrameResult();
 private:
+	void asyncRead();
 	Mutex mutexData;
 	ProcessedKinectData data;
 	bool isNewData;
