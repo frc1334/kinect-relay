@@ -96,6 +96,7 @@ int main(int argc, char *argv[])
 		std::cout << "Starting kinect...." << std::endl;
     	device->startVideo();
     	device->startDepth();
+    	device->setLed(LED_RED);
     	std::cout << "Starting server...." << std::endl;
 		io_service.run();
     	std::cout << "Stopping server...." << std::endl;

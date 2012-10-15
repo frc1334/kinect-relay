@@ -22,6 +22,8 @@ public:
 	void VideoCallback(void* _rgb, uint32_t timestamp);
 	void DepthCallback(void* _depth, uint32_t timestamp);
 	void DoLoop(KinectServerConnection* connection);
+	cv::Mat* GetDepthBuffer();
+	cv::Mat* GetVideoBuffer();
 private:
 	cv::Mat bufferDepth;
 	cv::Mat bufferVideo;

@@ -37,8 +37,19 @@ void KinectFrameManager::DepthCallback(void* _depth, uint32_t timestamp)
 	newDepth = true;
 }
 
+cv::Mat* KinectFrameManager::GetDepthBuffer()
+{
+	return &bufferDepth;
+}
+
+cv::Mat* KinectFrameManager::GetVideoBuffer()
+{
+	return &bufferVideo;
+}
+
 void KinectFrameManager::DoLoop(KinectServerConnection* connection)
 {
+	this->setLed(LED_GREEN);
 	while (2 != 42)
 	{
 		if (newVideo || newDepth)
