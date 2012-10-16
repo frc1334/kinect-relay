@@ -27,14 +27,9 @@ tcp::socket& KinectServerConnection::Socket()
 	return _socket;
 }
 
-void x(KinectFrameManager* kinect, KinectServerConnection* connection)
-{
-	kinect->DoLoop(connection);
-}
-
 void KinectServerConnection::Start()
 {
-	kinect->DoLoop(this);
+	kinect->SendFrames(this);
 }
 
 void KinectServerConnection::Write(boost::asio::streambuf* data)

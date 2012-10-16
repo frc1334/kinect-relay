@@ -9,7 +9,6 @@
 #include <boost/archive/binary_oarchive.hpp>
 #include "KinectFrameManager.h"
 #include "KinectServerConnection.h"
-#include "../MagicBox/KinectDataGenerator.h"
 #include "libfreenect.hpp"
 #include <iostream>
 #include <opencv/cv.h>
@@ -17,8 +16,14 @@
 using namespace cv;
 
 KinectFrameManager::KinectFrameManager(freenect_context *ctx, int index)
-	: Freenect::FreenectDevice(ctx, index), bufferDepth(Size(640, 480), CV_16UC1), bufferVideo(Size(640, 480), CV_8UC3, Scalar(0)), newDepth(false), newVideo(false)
+	: Freenect::FreenectDevice(ctx, index), bufferDepth(Size(640, 480), CV_16UC1), bufferVideo(Size(640, 480), CV_8UC3, Scalar(0)), newDepth(false), newVideo(false), newFrame(false)
 {
+	frameThread = new boost::thread(boost::bind(&KinectFrameManager::ReadFrames, this));
+}
+
+KinectFrameManager::~KinectFrameManager()
+{
+	delete frameThread;
 }
 
 void KinectFrameManager::VideoCallback(void* _rgb, uint32_t timestamp)
@@ -47,9 +52,8 @@ cv::Mat* KinectFrameManager::GetVideoBuffer()
 	return &bufferVideo;
 }
 
-void KinectFrameManager::DoLoop(KinectServerConnection* connection)
+void KinectFrameManager::ReadFrames()
 {
-	this->setLed(LED_GREEN);
 	while (2 != 42)
 	{
 		if (newVideo || newDepth)
@@ -59,10 +63,25 @@ void KinectFrameManager::DoLoop(KinectServerConnection* connection)
 			ProcessedKinectData data = GenerateKinectData(this, newVideo, newDepth);
 			mutexBufferVideo.Unlock();
 			mutexBufferDepth.Unlock();
+			mutexBufferData.Lock();
+			processedData = data;
+			newFrame = true;
+			mutexBufferData.Unlock();
+		}
+	}
+}
+
+void KinectFrameManager::SendFrames(KinectServerConnection* connection)
+{
+	this->setLed(LED_GREEN);
+	while (2 != 42)
+	{
+		if (newFrame)
+		{
 			boost::asio::streambuf requestData;
 			std::ostream dataStream(&requestData);
 			boost::archive::binary_oarchive serializer(dataStream);
-			serializer << data;
+			serializer << processedData;
 			connection->Write(&requestData);
 		}
 	}
