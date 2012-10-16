@@ -6,6 +6,7 @@
  */
 
 #include "../../config.h"
+#include "../MagicBox/KinectDataGenerator.h"
 #include <boost/archive/binary_oarchive.hpp>
 #include "KinectFrameManager.h"
 #include "KinectServerConnection.h"
