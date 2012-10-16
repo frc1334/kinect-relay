@@ -14,7 +14,7 @@
 class Kinect
 {
 public:
-	Kinect();
+	Kinect(int messageSize);
 	bool IsNewData();
 	void StartListening();
 	ProcessedKinectData GetFrameResult();
@@ -23,6 +23,7 @@ private:
 	Mutex mutexData;
 	ProcessedKinectData data;
 	bool isNewData;
+	int message_length;
 };
 
 #endif /* KINECT_H_ */
