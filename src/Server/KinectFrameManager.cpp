@@ -43,16 +43,6 @@ void KinectFrameManager::DepthCallback(void* _depth, uint32_t timestamp)
 	newDepth = true;
 }
 
-cv::Mat* KinectFrameManager::GetDepthBuffer()
-{
-	return &bufferDepth;
-}
-
-cv::Mat* KinectFrameManager::GetVideoBuffer()
-{
-	return &bufferVideo;
-}
-
 void KinectFrameManager::ReadFrames()
 {
 	while (2 != 42)
@@ -61,7 +51,7 @@ void KinectFrameManager::ReadFrames()
 		{
 			mutexBufferVideo.Lock();
 			mutexBufferDepth.Lock();
-			ProcessedKinectData data = GenerateKinectData(this, newVideo, newDepth);
+			ProcessedKinectData data = VisionCode::GenerateKinectData(this, newVideo, newDepth);
 			mutexBufferVideo.Unlock();
 			mutexBufferDepth.Unlock();
 			mutexBufferData.Lock();

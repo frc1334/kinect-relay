@@ -8,12 +8,13 @@
 #ifndef KINECTFRAMEMANAGER_H_
 #define KINECTFRAMEMANAGER_H_
 
-class KinectServerConnection;
+class KinectServerConnection; // forward declare; due to recursive includes
 
 #include <opencv/cv.h>
 #include <boost/thread.hpp>
 #include "../Shared/Mutex.h"
 #include "../MagicBox/KinectDataGenerator.h"
+#include "KinectServerConnection.h"
 #include "libfreenect.hpp"
 
 class KinectFrameManager
@@ -26,8 +27,8 @@ public:
 	void DepthCallback(void* _depth, uint32_t timestamp);
 	void SendFrames(KinectServerConnection* connection);
 	void ReadFrames();
-	cv::Mat* GetDepthBuffer();
-	cv::Mat* GetVideoBuffer();
+	inline cv::Mat* GetDepthBuffer() { return &bufferDepth; }
+	inline cv::Mat* GetVideoBuffer() { return &bufferVideo; }
 private:
 	cv::Mat bufferDepth;
 	cv::Mat bufferVideo;

@@ -8,6 +8,7 @@
 #ifndef KINECTDATAGENERATOR_H_
 #define KINECTDATAGENERATOR_H_
 
+#include "../../config.h"
 #include <boost/archive/binary_oarchive.hpp>
 
 // This class holds data to be used by the cRIO after processing and transmission
@@ -31,17 +32,22 @@ public:
 };
 
 #ifdef SERVER
+class KinectFrameManager; // forward declare this class; due to recursive includes
 
 #include "../Server/KinectFrameManager.h"
 
-// This method will be used to process vision data
-// This will be called by KinectFrameManager
-ProcessedKinectData GenerateKinectData(KinectFrameManager* kinect, bool newVideo, bool newDepth)
+class VisionCode
 {
-	ProcessedKinectData data;
-	data.uselessData = 42;
-	return data;
-}
+public:
+	// This method will be used to process vision data
+	// This will be called by KinectFrameManager
+	static ProcessedKinectData GenerateKinectData(KinectFrameManager* kinect, bool newVideo, bool newDepth)
+	{
+		ProcessedKinectData data;
+		data.uselessData = 42;
+		return data;
+	}
+};
 #endif
 
 #endif /* KINECTDATAGENERATOR_H_ */
