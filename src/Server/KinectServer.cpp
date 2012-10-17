@@ -10,6 +10,7 @@
 #include "KinectServerConnection.h"
 #include <boost/asio.hpp>
 #include <boost/bind.hpp>
+#include <boost/archive/binary_iarchive.hpp>
 
 KinectServer::~KinectServer()
 {

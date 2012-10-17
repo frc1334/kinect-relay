@@ -13,8 +13,8 @@
 
 using boost::asio::ip::tcp;
 
-Kinect::Kinect(int messageSize)
-	: isNewData(0), message_length(messageSize)
+Kinect::Kinect()
+	: isNewData(0)
 {
 }
 
@@ -35,10 +35,16 @@ void Kinect::asyncRead()
 	boost::asio::connect(socket, endpoints);
 	while (true)
 	{
-		boost::array<char, message_length> buffer;
+		std::streambuf buffer;
 		boost::system::error_code error;
 
-		size_t length = boost::asio::read(socket, boost::asio::buffer(buffer, message_length), boost::asio::transfer_all(), error);
+		size_t length = boost::asio::read(socket, buffer, boost::asio::transfer_all(), error);
+
+		boost::archive::binary_iarchive io(buffer);
+		mutexData.Lock();
+		io >> data;
+		isNewData = true;
+		mutexData.Unlock();
 
 		if (error == boost::asio::error::eof)
 			break;
@@ -55,5 +61,6 @@ void Kinect::StartListening()
 ProcessedKinectData Kinect::GetFrameResult()
 {
 	Mutex::ScopeMutex lock(mutexData);
+	isNewData = false;
 	return data;
 }
