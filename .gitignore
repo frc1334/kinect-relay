@@ -24,8 +24,9 @@
 
 # output
 kinectd
+testclient
 
-#autoconf stuff
+#autotools stuff
 .deps
 .dirstamp
 Makefile
@@ -42,5 +43,4 @@ install-sh
 missing
 stamp-h1
 config.log
-
-pkg
+.autotools
