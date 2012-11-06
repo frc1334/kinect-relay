@@ -6,6 +6,7 @@
  */
 
 #include "Kinect.h"
+#include <boost/archive/binary_iarchive.hpp>
 #include <boost/thread.hpp>
 #include <boost/asio.hpp>
 #include <boost/array.hpp>
@@ -13,8 +14,8 @@
 
 using boost::asio::ip::tcp;
 
-Kinect::Kinect()
-	: isNewData(0)
+Kinect::Kinect(std::string ip, std::string port)
+	: isNewData(0), ip(ip), port(port)
 {
 }
 
@@ -55,7 +56,7 @@ void Kinect::asyncRead()
 
 void Kinect::StartListening()
 {
-	boost::thread listenerThread(asyncRead);
+	boost::thread listenerThread(&Kinect::asyncRead, this);
 }
 
 ProcessedKinectData Kinect::GetFrameResult()
