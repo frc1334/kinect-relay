@@ -4,7 +4,7 @@ kinect-relay
 Overview
 --------
 
-  kinect-relay is a simple program designed to process data from a Kinect and transmit it over TCP.  This is useful for embedded systems that are not capable of interfacing with the kinect on their own.
+  kinect-relay is a simple program designed to process data from a Kinect and transmit it over TCP.  This is useful for embedded systems that are not capable of interfacing with the kinect on their own.  kinect-relay is designed to offload maximum work to the server, under the assumption most of the time, the server will be more powerful than the client, and will likely be entirely dedicated to running the server.
 
 
 Dependencies
@@ -29,6 +29,7 @@ Then run:
         $ opkg-target install libfreenect libfreenect-dev boost boost-serialization boost-program-options opencv-dev
         $ ./configure --host=arm-angstrom-linux-gnueabi --prefix=$CROSS_OUTPUT
         $ make
+        $ make check
         $ make install
 
 ### Notice
@@ -47,8 +48,7 @@ When compiling, change
 
 To
 
-        $ cmake -DCMAKE_TOOLCHAIN_FILE=../angstrom_toolchain.cmake \
-        $ -D CMAKE_INSTALL_PREFIX=$CROSS_OUTPUT
+        $ cmake -DCMAKE_TOOLCHAIN_FILE=../angstrom_toolchain.cmake -DCMAKE_INSTALL_PREFIX=$CROSS_OUTPUT
         $ make
         $ sudo make install
 

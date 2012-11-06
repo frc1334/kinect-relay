@@ -4,6 +4,7 @@ AM_INIT_AUTOMAKE([1.10 -Wall no-define])
 AC_DEFINE([SERVER], [], [42])
 AC_CONFIG_HEADERS([config.h])
 AC_PROG_CXX
+AC_PROG_CC
 PKG_CHECK_MODULES([libfreenect], [libfreenect >= 0.1])
 PKG_CHECK_MODULES([opencv], [opencv >= 0.1])
 AC_CONFIG_FILES([Makefile])

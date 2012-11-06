@@ -29,7 +29,7 @@ void Kinect::asyncRead()
 	// Nothing will be kept between calls
 	boost::asio::io_service io_service;
 	tcp::resolver resolver(io_service);
-	tcp::resolver::query resolverQuery("tempip", "kinectd");
+	tcp::resolver::query resolverQuery(tcp::v4(), ip, port);
 	tcp::resolver::iterator endpoints = resolver.resolve(resolverQuery);
 	tcp::socket socket(io_service);
 	boost::asio::connect(socket, endpoints);

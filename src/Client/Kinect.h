@@ -14,7 +14,7 @@
 class Kinect
 {
 public:
-	Kinect();
+	Kinect(std::string ip, std::string port);
 	bool IsNewData();
 	void StartListening();
 	ProcessedKinectData GetFrameResult();
@@ -23,6 +23,8 @@ private:
 	Mutex mutexData;
 	ProcessedKinectData data;
 	bool isNewData;
+
+	std::string ip, port;
 };
 
 #endif /* KINECT_H_ */
