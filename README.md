@@ -29,7 +29,6 @@ Then run:
         $ opkg-target install libfreenect libfreenect-dev boost boost-serialization boost-program-options opencv-dev
         $ ./configure --host=arm-angstrom-linux-gnueabi --prefix=$CROSS_OUTPUT
         $ make
-        $ make check
         $ make install
 
 ### Notice
@@ -54,10 +53,19 @@ To
 
 Ensure that libfreenect is cross-compiled _after_ all `opkg` commands are finished in the above instructions
 
+### Testing
+
+  This program includes a small test suite.  It is recommended that it is compiled and run on the host system.  It can be used as follows:
+
+        $ ./configure
+        $ make check
+
+  The test suite will prompt for the target address and port.
+
 Implementation Guide
 --------------------
 
-Error: Implementation guide not implemented.
+  All the implementation is stored in `src/MagicBox/KinectDataGenerator.h`.  This is still unfinished.....
 
 
 [1]: http://www.boost.org/                                                  "Boost Website"
