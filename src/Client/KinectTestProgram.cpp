@@ -5,7 +5,7 @@
  *      Author: joseph
  */
 
-#include <Kinect.h>
+#include "Kinect.h"
 
 int main(int argc, char *argv[])
 {

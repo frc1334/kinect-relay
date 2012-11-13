@@ -8,6 +8,10 @@
 #ifndef KINECT_H_
 #define KINECT_H_
 
+#if HAVE_CONFIG_H
+#include "../../config.h"
+#endif
+
 #include "../MagicBox/KinectDataGenerator.h"
 #include "../Shared/Mutex.h"
 

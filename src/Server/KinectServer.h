@@ -8,6 +8,10 @@
 #ifndef KINECTSERVER_H_
 #define KINECTSERVER_H_
 
+#if HAVE_CONFIG_H
+#include "../../config.h"
+#endif
+
 #include <boost/asio.hpp>
 #include "KinectServerConnection.h"
 #include "KinectFrameManager.h"

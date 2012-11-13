@@ -8,6 +8,10 @@
 #ifndef KINECTSUBSYSTEM_H_
 #define KINECTSUBSYSTEM_H_
 
+#if HAVE_CONFIG_H
+#include "../../config.h"
+#endif
+
 class KinectSubsystem {
 public:
 	KinectSubsystem();

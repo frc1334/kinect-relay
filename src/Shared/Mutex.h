@@ -8,6 +8,10 @@
 #ifndef MUTEX_H_
 #define MUTEX_H_
 
+#if HAVE_CONFIG_H
+#include "../../config.h"
+#endif
+
 #include <pthread.h>
 
 class Mutex

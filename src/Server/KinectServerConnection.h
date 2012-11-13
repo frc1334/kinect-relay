@@ -8,6 +8,10 @@
 #ifndef KINECTSERVERCONNECTION_H_
 #define KINECTSERVERCONNECTION_H_
 
+#if HAVE_CONFIG_H
+#include "../../config.h"
+#endif
+
 #include <boost/shared_ptr.hpp>
 #include <boost/enable_shared_from_this.hpp>
 #include <boost/asio.hpp>

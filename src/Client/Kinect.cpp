@@ -6,12 +6,15 @@
  */
 
 #include "Kinect.h"
+#include <boost/interprocess/streams/bufferstream.hpp>
 #include <boost/archive/binary_iarchive.hpp>
 #include <boost/thread.hpp>
 #include <boost/asio.hpp>
 #include <boost/array.hpp>
 #include <iostream>
 
+using namespace std;
+using namespace boost::interprocess;
 using boost::asio::ip::tcp;
 
 Kinect::Kinect(std::string ip, std::string port)
@@ -36,12 +39,13 @@ void Kinect::asyncRead()
 	boost::asio::connect(socket, endpoints);
 	while (true)
 	{
-		std::streambuf buffer;
+		vector<char> buf(4);
 		boost::system::error_code error;
 
-		size_t length = boost::asio::read(socket, buffer, boost::asio::transfer_all(), error);
+		size_t length = boost::asio::read(socket, boost::asio::buffer(buf), boost::asio::transfer_all(), error);
 
-		boost::archive::binary_iarchive io(buffer);
+		bufferstream bufstr(&buf[0], buf.size());
+		boost::archive::binary_iarchive io(bufstr);
 		mutexData.Lock();
 		io >> data;
 		isNewData = true;

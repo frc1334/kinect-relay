@@ -8,6 +8,10 @@
 #ifndef KINECTFRAMEMANAGER_H_
 #define KINECTFRAMEMANAGER_H_
 
+#if HAVE_CONFIG_H
+#include "../../config.h"
+#endif
+
 class KinectServerConnection; // forward declare; due to recursive includes
 
 #include <opencv/cv.h>
