@@ -25,6 +25,7 @@
 # output
 kinectd
 testclient
+src/MagicBox
 
 #autotools stuff
 .deps

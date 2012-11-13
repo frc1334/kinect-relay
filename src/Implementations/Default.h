@@ -11,6 +11,7 @@
 #if HAVE_CONFIG_H
 #include "../../config.h"
 #endif
+
 #include <boost/archive/binary_oarchive.hpp>
 
 // This class holds data to be used by the cRIO after processing and transmission
