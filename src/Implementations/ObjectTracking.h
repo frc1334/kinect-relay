@@ -8,7 +8,10 @@
 #ifndef KINECTDATAGENERATOR_H_
 #define KINECTDATAGENERATOR_H_
 
+#if HAVE_CONFIG_H
 #include "../../config.h"
+#endif
+
 #include <boost/archive/binary_oarchive.hpp>
 
 class ProcessedKinectData
@@ -35,6 +38,8 @@ class KinectFrameManager; // forward declare this class; due to recursive includ
 class VisionCode
 {
 public:
+	// This method will be used to process vision data
+	// This will be called by KinectFrameManager
 	static ProcessedKinectData GenerateKinectData(KinectFrameManager* kinect, bool newVideo, bool newDepth)
 	{
 		ProcessedKinectData data;
