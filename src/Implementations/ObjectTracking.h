@@ -60,7 +60,9 @@ public:
 		double area = cvGetCentralMoment(moments, 0, 0);
 		double x = cvGetSpatialMoment(moments, 1, 0) / area;
 		double y = cvGetSpatialMoment(moments, 0, 1) / area;
-		freenect_camera_to_world(kinect, (int)x, (int)y, (int)*((uint16_t*)CV_MAT_ELEM_PTR((CvMat)*kinect->GetDepthBuffer(), x, y) ), &data.x, &data.y);
+		freenect_camera_to_world(kinect->getDevice(), (int)x, (int)y, (int)*((uint16_t*)CV_MAT_ELEM_PTR((CvMat)*kinect->GetDepthBuffer(), x, y) ), &data.x, &data.y);
+		cvReleaseMat((CvMat**)&videoHSV);
+		cvReleaseMat((CvMat**)&greenThres);
 		return data;
 	}
 };
