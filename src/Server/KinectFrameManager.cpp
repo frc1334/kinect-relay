@@ -19,6 +19,7 @@ using namespace cv;
 KinectFrameManager::KinectFrameManager(freenect_context *ctx, int index)
 	: Freenect::FreenectDevice(ctx, index), bufferDepth(Size(640, 480), CV_16UC1), bufferVideo(Size(640, 480), CV_8UC3, Scalar(0)), newDepth(false), newVideo(false), newFrame(false)
 {
+	this->setDepthFormat(FREENECT_DEPTH_REGISTERED);
 	frameThread = new boost::thread(boost::bind(&KinectFrameManager::ReadFrames, this));
 }
 
