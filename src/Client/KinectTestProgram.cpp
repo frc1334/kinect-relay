@@ -7,7 +7,14 @@
 
 #include "Kinect.h"
 
+using namespace std;
+
 int main(int argc, char *argv[])
 {
+	Kinect kinect(new string(argv[0]), new string(argv[1]));
+	kinect.StartListening();
+	while (true)
+		if (kinect.IsNewData())
+			cout << kinect.GetFrameResult().x << ", " << kinect.GetFrameResult().y << ", " << kinect.GetFrameResult().z << endl;
 }
 
