@@ -51,9 +51,9 @@ public:
 		ProcessedKinectData data;
 		kinect->GetDepthBuffer();
 		Mat* videoRGB = kinect->GetVideoBuffer();
-		Mat* videoHSV = cvCreateImage(cvGetSize(videoRGB), 8, 3);
+		IplImage* videoHSV = cvCreateImage(cvGetSize(videoRGB), 8, 3);
 		cvCvtColor(videoRGB, videoHSV, CV_RGB2HSV);
-		Mat* greenThres = cvCreateImage(cvGetSize(videoRGB), 8, 1);
+		IplImage* greenThres = cvCreateImage(cvGetSize(videoRGB), 8, 1);
 		cvInRangeS(videoHSV, cvScalar(30, 100, 100), cvScalar(40, 255, 255), greenThres);
 		CvMoments *moments = (CvMoments*)malloc(sizeof(CvMoments));
 		cvMoments(greenThres, moments, 1);
