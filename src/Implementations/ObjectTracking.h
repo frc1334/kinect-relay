@@ -26,9 +26,9 @@ private:
 	}
 
 public:
-	unsigned double x;
-	unsigned double y;
-	unsigned double z;
+	double x;
+	double y;
+	double z;
 };
 
 #ifdef SERVER
