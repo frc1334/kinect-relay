@@ -65,7 +65,7 @@ Ensure that libfreenect is cross-compiled _after_ all `opkg` commands are finish
 Implementation Guide
 --------------------
 
-  All the implementation is stored in `src/MagicBox/KinectDataGenerator.h`.  This is still unfinished.....
+  All the implementation is stored in `src/MagicBox/KinectDataGenerator.h`.
 
 
 [1]: http://www.boost.org/                                                  "Boost Website"
