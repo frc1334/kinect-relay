@@ -1,0 +1,3 @@
+[submodule "WPILib"]
+	path = WPILib
+	url = git://github.com/frc1334/WPILib.git
