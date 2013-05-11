@@ -17,21 +17,16 @@
 #include <boost/asio.hpp>
 #include "KinectFrameManager.h"
 
-using boost::asio::ip::tcp;
-
 class KinectServerConnection
 	: public boost::enable_shared_from_this<KinectServerConnection>
 {
 public:
 	typedef boost::shared_ptr<KinectServerConnection> pointer;
-	static pointer Create(boost::asio::io_service& io_service, KinectFrameManager* kinect);
-	tcp::socket& Socket();
+	static pointer Create(KinectFrameManager* kinect);
 	void Start();
 	void Write(boost::asio::streambuf* data);
 private:
-	KinectServerConnection(boost::asio::io_service& io_service, KinectFrameManager* kinect);
-	void handleWrite(const boost::system::error_code& error, size_t bytes_transferred);
-	tcp::socket _socket;
+	KinectServerConnection(KinectFrameManager* kinect);
 	KinectFrameManager* kinect;
 };
 

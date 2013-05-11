@@ -16,7 +16,6 @@ class KinectServerConnection; // forward declare; due to recursive includes
 
 #include <opencv/cv.h>
 #include <boost/thread.hpp>
-#include "../Shared/Mutex.h"
 #include "../MagicBox/KinectDataGenerator.h"
 #include "KinectServerConnection.h"
 #include "libfreenect.hpp"
@@ -36,9 +35,9 @@ public:
 private:
 	cv::Mat bufferDepth;
 	cv::Mat bufferVideo;
-	Mutex mutexBufferDepth;
-	Mutex mutexBufferVideo;
-	Mutex mutexBufferData;
+	pthread_mutex_t mutexBufferDepth;
+        pthread_mutex_t mutexBufferVideo;
+	pthread_mutex_t mutexBufferData;
 	ProcessedKinectData processedData;
 	bool newDepth;
 	bool newVideo;
